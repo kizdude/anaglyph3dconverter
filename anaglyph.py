@@ -49,7 +49,7 @@ for infile in sys.argv[1:]:
             with Image.open(infile) as im:
                 w = im.width
                 h = im.height
-                distort = round(w/30)
+                distort = round(w/40)
 
                 redim = grey_to_red(im)
 
@@ -69,8 +69,12 @@ for infile in sys.argv[1:]:
                 region = redim.crop(right)
                 pasteim.alpha_composite(region, (distort,0))
 
+                region = pasteim.crop((distort, 0, w-distort, h))
+                outputim = Image.new("RGBA", (w- distort*2, h) )
+                outputim.paste(region)
+
                 outfile = os.path.splitext(infile)[0] + "-anaglyph.png"
-                pasteim.save(outfile, "PNG")
+                outputim.save(outfile, "PNG")
 
         except OSError:
             print("cannot create thumbnail for", infile)
