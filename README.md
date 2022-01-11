@@ -1,4 +1,4 @@
-# Anaglyph 3D Converter
+# Anaglyph 3D Converter 🎞
 
 A python script that adds a 3D anaglyph style effect to an image using the Pillow image processing package.
 
