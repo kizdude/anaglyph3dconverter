@@ -1,6 +1,6 @@
 # anaglyph3dconverter
 
-A python script that adds a 3D anaglyph style effect to an image.
+A python script that adds a 3D anaglyph style effect to an image using the Pillow image processing package.
 
 ## Install
 `pip install -r requirements.txt`
