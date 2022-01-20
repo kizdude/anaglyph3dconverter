@@ -8,14 +8,14 @@ def grey_to_red(input_image):
 
     for x in range(output_image.width):
         for y in range(output_image.height):
-            # for the given pixel at w,h, lets check its value against the threshold
+            # for the given pixel at w,h, we get the luminance and construct the output images magenta and yellow components
             l = input_image.getpixel((x, y))
             output_image.putpixel((x, y), (0, 255 - l, 255 - l, 0))
     # return new image
     output_image = output_image.convert("RGBA")
     for x in range(output_image.width):
         for y in range(output_image.height):
-            # for the given pixel at w,h, lets check its value against the threshold
+            # for the given pixel at w,h, we set the alpha channel inversely relative to the luminance
             r, g, b, a = output_image.getpixel((x, y))
             l = round(r * 299 / 1000 + g * 587 / 1000 + b * 114 / 1000)
             output_image.putpixel((x, y), (r, g, b, round((255 - l)*0.4)))
@@ -28,14 +28,14 @@ def grey_to_cyan(input_image):
 
     for x in range(output_image.width):
         for y in range(output_image.height):
-            # for the given pixel at w,h, lets check its value against the threshold
+            # for the given pixel at w,h, we get the luminance and construct the output images cyan component
             l = input_image.getpixel((x, y))
             output_image.putpixel((x, y), (255 - l, 0, 0, 0))
     # return new image
     output_image = output_image.convert("RGBA")
     for x in range(output_image.width):
         for y in range(output_image.height):
-            # for the given pixel at w,h, lets check its value against the threshold
+            # for the given pixel at w,h, we set the alpha channel inversely relative to the luminance
             r, g, b, a = output_image.getpixel((x, y))
             l = round(r * 299 / 1000 + g * 587 / 1000 + b * 114 / 1000)
             output_image.putpixel((x, y), (r, g, b, round((255 - l)*0.8) ))
@@ -77,4 +77,4 @@ for infile in sys.argv[1:]:
                 outputim.save(outfile, "PNG")
 
         except OSError:
-            print("cannot create thumbnail for", infile)
+            print("cannot create anaglyph image for", infile)
